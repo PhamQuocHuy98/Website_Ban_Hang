@@ -1,0 +1,171 @@
+﻿@model Do_An_Web.Models.KhachHang
+
+@{
+    ViewBag.Title = "TaoMoi";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="element-wrapper">
+            <h6 class="element-header">
+                TẠO MỚI NGƯỜI DÙNG
+            </h6>
+            <div class="element-box-tp">
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .element-wrapper {
+        padding-bottom: 1rem;
+    }
+
+    .container {
+        padding-top: 1rem;
+    }
+
+    .element-wrapper .element-header {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding-bottom: 1rem;
+        margin-bottom: 0rem;
+        position: relative;
+        z-index: 1;
+    }
+    .field-icon
+    {
+        float: right;
+        margin-left: -25px;
+        margin-top: -25px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .container {
+        padding-top: 50px;
+        margin: auto;
+    }
+
+    .fa-fw {
+        text-align: center;
+        width: 3.25em;
+    }
+</style>
+@using (Html.BeginForm("TaoMoi", "QuanLyNguoiDung", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label><i class="fas fa-address-card col-md-1.1" aria-hidden="true" style="font-weight:bold"></i> Họ và tên</label>
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control", @required="required" } })
+                @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-user-circle col-md-1.1" aria-hidden="true" style="font-weight:bold"></i> Tài khoản</label>
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.TaiKhoan, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.TaiKhoan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-key col-md-1.1" aria-hidden="true" style="font-weight:bold"></i> Mật khẩu</label>
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control", @id = "password-field", @type = "password", @required = "required" } })
+                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-envelope-open-text col-md-1.1" aria-hidden="true" style="font-weight:bold"></i> Email</label>
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @type = "email", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-map-marked-alt col-md-1.1" aria-hidden="true" style="font-weight:bold"></i> Địa chỉ</label>
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" , @required = "required" } })
+                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-phone-square col-md-1.1" aria-hidden="true" style="font-weight:bold"></i> Điện thoại</label>
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.DienThoai, new { htmlAttributes = new { @class = "form-control", @type = "number" , @required = "required" } })
+                @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Tạo mới" class="btn btn-secondary" style="font-weight:bold" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Quay lại", "Index")
+</div>
+
+<script type="text/javascript">
+    $(".toggle-password").click(function () {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+</script>
+
+<script>
+    $('input[type="text"]')
+        .on('invalid', function () {
+            return this.setCustomValidity('Phải nhập đầy đủ thông tin!');
+        })
+        .on('input', function () {
+            return this.setCustomValidity('');
+        });
+    $('input[type="password"]')
+        .on('invalid', function () {
+            return this.setCustomValidity('Phải nhập vào Mật khẩu!');
+        })
+        .on('input', function () {
+            return this.setCustomValidity('');
+        });
+    $('input[type="email"]')
+        .on('invalid', function () {
+            return this.setCustomValidity('Phải nhập vào Email!');
+        })
+        .on('input', function () {
+            return this.setCustomValidity('');
+        });
+    $('input[type="number"]')
+        .on('invalid', function () {
+            return this.setCustomValidity('Phải nhập vào Số điện thoại!');
+        })
+        .on('input', function () {
+            return this.setCustomValidity('');
+        });
+  
+    jQuery(document).ready(function () {
+
+        jQuery("#formID").validationEngine();
+    });
+</script>

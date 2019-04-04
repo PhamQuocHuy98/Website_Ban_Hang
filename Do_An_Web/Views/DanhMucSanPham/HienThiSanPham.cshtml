@@ -1,0 +1,175 @@
+﻿@using Do_An_Web.Models
+@{
+    ViewBag.Title = "HienThiSanPham";
+    Layout = "~/Views/Layout/ProductLayout.cshtml";
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+}
+@model List<SanPham>
+    
+
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- ASIDE -->
+                <div id="aside" class="col-md-3">
+                    <!-- aside Widget -->
+                    <div class="aside">
+                        <h3 class="aside-title">Danh mục </h3>
+                        <div class="checkbox-filter">
+
+                            <div class="input-checkbox">
+                                <input type="checkbox" id="category-1">
+                                <label for="category-1">
+                                    <span></span>
+                                    SamSung
+                                    <small>Số Lượng</small>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /aside Widget -->
+                    <!-- aside Widget -->
+                    @using (Html.BeginForm())
+                    {
+                        <div class="aside">
+                            <h3 class="aside-title">Giá bán</h3>
+                            <div class="price-filter">
+                                <div id="price-slider" class="noUi-target noUi-ltr noUi-horizontal"><div class="noUi-base"><div class="noUi-origin" style="left: 0%;"><div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="100.0" aria-valuenow="0.0" aria-valuetext="1.00" style="z-index: 5;"></div></div><div class="noUi-connect" style="left: 0%; right: 0%;"></div><div class="noUi-origin" style="left: 100%;"><div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="999.00" style="z-index: 4;"></div></div></div></div>
+                                <div class="input-number price-min">
+
+                                    <input placeholder="1 Triệu" id ="" type="number" name="txtGiaNho">
+                                    <span class="qty-up">+</span>
+                                    <span class="qty-down">-</span>
+                                </div>
+                                <span>-</span>
+                                <div class="input-number price-max">
+                                    <input placeholder="99 Triệu" id="" type="number" name="txtGiaLon">
+                                    <span class="qty-up">+</span>
+                                    <span class="qty-down">-</span>
+                                </div>
+                                <button id="but" style="margin:10px 0px 0px 50px" class="btn btn-danger">
+                                    Tìm kiếm theo giá
+                                </button>
+                            </div>
+                        </div>
+                    }
+                        <!-- /aside Widget -->
+                        <!-- aside Widget -->
+
+                        <div class="aside">
+                            <h3 class="aside-title"></h3>
+
+                            <div class="checkbox-filter">
+                                <div class="input-checkbox">
+                                    <input type="checkbox" id="brand-1">
+                                    <label for="brand-1">
+                                        <span></span>
+                                        SamSung
+                                        <small>(100)</small>
+                                    </label>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <!-- /aside Widget -->
+                        <!-- aside Widget -->
+                        <div class="aside">
+                            <h3 class="aside-title">Bán chạy</h3>
+                            <div class="product-widget">
+                                <div class="product-img">
+                                    <img src="./img/product01.png" alt="">
+                                </div>
+                                <div class="product-body">
+                                    <p class="product-category">Category</p>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                    <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /aside Widget -->
+                    </div>
+                <!-- /ASIDE -->
+                <!-- STORE -->
+                <div id="store" class="col-md-9">
+                    <!-- store top filter -->
+                    @using (Html.BeginForm())
+                    {
+                        <div class="store-filter clearfix">
+                            <div class="store-sort">
+                                <label>
+                                    Sắp Xếp
+                                    @Html.DropDownList("SapXep", new List<SelectListItem>
+                                         {
+                                          new SelectListItem {Text = "Tên", Value = "1"},
+                                          new SelectListItem {Text = "Ngày Cập Nhật", Value = "2"},
+                                         }, new { @class = "input-select" }
+                             )
+                                    @*<select id="SapXep" class="input-select">
+                            <option value="0">Tên</option>
+                            <option value="1">Ngày cập nhật</option>
+                        </select>*@
+                                </label>
+
+                                <button type="submit" class="btn btn-danger">
+                                    @*@Ajax.ActionLink("Sắp Xếp", "HienThiSanPham", "DanhMucSanPham", new { @lsp = Model})*@
+                                    Sắp Xếp
+                                </button>
+
+                            </div>
+                            <ul class="store-grid">
+                                <li class="active"><i class="fa fa-th"></i></li>
+                                <li><a href="#"><i class="fa fa-th-list"></i></a></li>
+                            </ul>
+                        </div>
+                    }
+                        <!-- /store top filter -->
+                        <!-- store products -->
+                        <div class="row">
+                            <!-- product -->
+                            @if (ViewBag.SapXep == 1)
+                            {
+
+                                @Html.Partial("SanPhamPartial", Model.OrderBy(n => n.NgayCapNhat));
+                            }
+                            else if (ViewBag.SapXep == 0)
+                            {
+                                @Html.Partial("SanPhamPartial", Model.OrderBy(n => n.TenSP));
+                            }
+
+                            else
+                            {
+                                @Html.Partial("SanPhamPartial", Model.OrderBy(n => n.GiaBan));
+                            }
+                        </div>
+                        <!-- /store products -->
+                        <!-- store bottom filter -->
+                        <div class="store-filter clearfix">
+                            <span class="store-qty">Showing 20-100 products</span>
+                            <ul class="store-pagination">
+                                <li class="active">1</li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- /store bottom filter -->
+                    </div>
+                <!-- /STORE -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div> 
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "BieuDo";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="~/Scripts/Chart.js/dist/Chart.min.css">
+<script src="~/Scripts/Chart.js/dist/Chart.js"></script>
+<style>
+    .chart-container {
+        position: relative;
+        height: 900px;
+        width: 400px;
+    }
+</style>
+<canvas id="myChart"style="width:700px ; height: 50vh"></canvas>
+<script>
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+            datasets: [{
+                label: 'DOANH THU HẰNG THÁNG (triệu VNĐ)',
+                data: [@ViewBag.T1, @ViewBag.T2, @ViewBag.T3, @ViewBag.T4, @ViewBag.T5, @ViewBag.T6, @ViewBag.T7, @ViewBag.T8, @ViewBag.T9, @ViewBag.T10, @ViewBag.T11, @ViewBag.T12],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+
+<style>
+    element.style {
+        height: 410px;
+        width: 790px;
+    }
+    .myChart {
+        height: 300px;
+        width: 200px;
+    }
+</style>
+

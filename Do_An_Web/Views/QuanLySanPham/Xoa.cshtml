@@ -1,0 +1,143 @@
+﻿@model Do_An_Web.Models.SanPham
+
+@{
+    ViewBag.Title = "Xoá Sản phẩm";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+@* Sử dụng Control DatePicker với việc chèn script*@
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+
+@* Sử dụng Control TinyMCE JQuery với việc chèn script*@
+<script src="~/Content/TinyMCE/tinymce.min.js"></script>
+<script>
+    tinymce.init(
+        { selector: '.textarea' }
+    );
+</script>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="element-wrapper">
+            <h6 class="element-header">
+                XOÁ SẢN PHẨM
+            </h6>
+            <div class="element-box-tp">
+            </div>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("Xoa", "QuanLySanPham", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.MaSP)
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-4" for="TenSP">Tên Sản phẩm</label>
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-4" for="GiaBan">Giá bán</label>
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-4" for="MoTa">Mô tả</label>
+            <div class="col-md-12">
+                <textarea name="MoTa" class="textarea" style="width:100%">@Model.MoTa</textarea>
+                @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-4" for="CauHinh">Cấu hình</label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.CauHinh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CauHinh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-4" for="HinhAnh">Hình ảnh</label>
+            <div class="col-md-10">
+                <input name="HinhAnh" type="file" />
+                <br />
+                <span style="color:red">@ViewBag.Upload</span>
+                <br>
+                <img src="@Url.Content("~/Content/Images/"+Model.HinhAnh)" width="200" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-4" for="SoLuongTon">Số lượng tồn</label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.SoLuongTon, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SoLuongTon, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-4" for="MaNSX">Mã Nhà sản xuất</label>
+            <div class="col-md-3">
+                @Html.DropDownList("MaNSX", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaNSX, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-4" for="MaLoaiSP">Mã Loại sản xuất</label>
+            <div class="col-md-4">
+                @Html.DropDownList("MaLoaiSP", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaLoaiSP, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-4" for="MaNCC">Mã Nhà cung cấp</label>
+            <div class="col-md-3">
+                @Html.DropDownList("MaNCC", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaNCC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Xoá" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    .FooterAdmin {
+        display: none;
+    }
+
+    .element-wrapper .element-header {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding-bottom: 1rem;
+        margin-bottom: 0rem;
+        position: relative;
+        z-index: 1;
+    }
+</style>
+
+
+<div>
+    @Html.ActionLink("Quay lại", "Index")
+</div>
+

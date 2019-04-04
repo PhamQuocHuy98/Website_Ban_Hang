@@ -1,0 +1,32 @@
+﻿@foreach (var item in Model)
+{
+    <a href=@Url.Action("XemChiTiet", "SanPham", new { id = item.MaSP } )>
+        <div class="col-md-4 col-xs-6">
+            <div class="product">
+                <div class="product-img">
+                    <img src="~/Content/Layout/img/@item.HinhAnh" width="100" height="250" alt="">
+                </div>
+                <div class="product-body">
+                    <p class="product-category">@item.LoaiSanPham.TenLoai</p>
+                    <h3 class="product-name"><a href="#">@item.TenSP</a></h3>
+                    <h4 class="product-price">@string.Format("{0:0,0 VNĐ}", item.GiaBan) <del class="product-old-price">@string.Format("{0:0,0 VNĐ}", (item.GiaBan * 3) / 2)</del></h4>
+                    <div class="product-rating">
+                    </div>
+                    <div class="product-btns">
+                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
+                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So Sánh</span></button>
+                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem Chi Tiết</span></button>
+                    </div>
+                </div>
+                <div class="add-to-cart">
+                    <button class="add-to-cart-btn">
+                        <i class="fa fa-shopping-cart"></i>
+                        @Ajax.ActionLink("Thêm Vào Giỏ Hàng", "ThemGioHang", "GioHang", new { @MaSp = item.MaSP }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "divGioHang", InsertionMode = InsertionMode.Replace }, null)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </a>
+    <!-- /product -->
+    @*<div class="clearfix visible-lg visible-md"></div>*@
+}

@@ -1,0 +1,105 @@
+﻿
+@using Do_An_Web.Models
+@model KHACHHANG
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+    <!-- Title Page-->
+    <title>Đăng Ký</title>
+    <!-- Icons font CSS-->
+    <link href="~/Content/LayoutDangKy/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/LayoutDangKy/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Vendor CSS-->
+    <link href="~/Content/LayoutDangKy/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/LayoutDangKy/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+    <!-- Main CSS-->
+    <link href="~/Content/LayoutDangKy/css/main.css" rel="stylesheet" media="all">
+</head>
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Đăng Ký</h2>
+                    @using (Html.BeginForm())
+                    {
+                        Html.AntiForgeryToken();
+                        <hr />
+                        Html.ValidationSummary(true);
+                        <div class="input-group">
+                            <label class="label">Họ Tên</label>
+                            <input class="input--style-4" type="text" name="Hoten">
+                            
+                            
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Tài Khoản</label>
+                                    <input class="input--style-4" type="text" name="TaiKhoan">
+                                    @Html.ValidationMessageFor(model => model.TaiKhoan)
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Mật Khẩu</label>
+                                    <input class="input--style-4" type="text" name="MatKhau">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space"></div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Email</label>
+                                    <input class="input--style-4" type="email" name="Email">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Điện Thoại</label>
+                                    <input class="input--style-4" type="text" name="DienThoai">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Địa Chỉ</label>
+                            <input class="input--style-4" type="text" name="DiaChi">
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Đăng Ký</button>
+                        </div>
+                        { 
+                            if(@ViewBag.ThongBao== "Tài Khoản Đã Tồn Tại")
+                            {
+                                <h1>@ViewBag.ThongBao</h1>
+                            }
+                            else
+                            {
+                                //.
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Jquery JS-->
+    <script src="~/Content/LayoutDangKy/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="~/Content/LayoutDangKy/vendor/select2/select2.min.js"></script>
+    <script src="~/Content/LayoutDangKy/vendor/datepicker/moment.min.js"></script>
+    <script src="~/Content/LayoutDangKy/vendor/datepicker/daterangepicker.js"></script>
+    <!-- Main JS-->
+    <script src="~/Content/LayoutDangKy/js/global.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
+<!-- end document-->

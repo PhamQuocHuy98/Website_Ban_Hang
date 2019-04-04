@@ -1,0 +1,138 @@
+﻿@model IEnumerable<Do_An_Web.Models.ItemGioHang>
+
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Layout/ProductLayout.cshtml";
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+}
+
+
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-md-7">
+                <!-- Billing Details -->
+                @{
+                    Do_An_Web.Models.KhachHang kh = Session["TaiKhoan"] as Do_An_Web.Models.KhachHang;
+                    if (kh != null)
+                    {
+
+                        <div class="billing-details">
+                            <div class="section-title">
+                                <h3 class="title">Thông tin liên lạc</h3>
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="text" name="name" value="@kh.HoTen">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="email" name="email" value="@kh.Email">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="text" name="address" value="@kh.DiaChi">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="tel" name="tel" value=@kh.DienThoai>
+                            </div>
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="billing-details">
+                            <div class="section-title">
+                                <h3 class="title">Thông tin liên lạc</h3>
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="text" name="last-name" placeholder="Họ Tên">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="email" name="email" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="text" name="address" placeholder="Địa Chỉ">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="tel" name="tel" placeholder="Điện thoại">
+                            </div>
+
+                        </div>
+                    }
+                }
+
+
+                <!-- Shiping Details -->
+                <div class="shiping-details">
+                    <div class="section-title">
+                        <h3 class="title">Nội dung</h3>
+                    </div>
+
+                </div>
+                <!-- /Shiping Details -->
+                <!-- Order notes -->
+                <div class="order-notes">
+                    <textarea class="input" placeholder="Nội dung"></textarea>
+                </div>
+                <!-- /Order notes -->
+            </div>
+
+            <!-- Order Details -->
+            <div class="col-md-5 order-details">
+                <div class="section-title text-center">
+                    <h3 class="title">Giỏ hàng của bạn</h3>
+                </div>
+                <div class="order-summary">
+                    <div class="order-col">
+                        <div><strong>Sản phẩm</strong></div>
+                        <div><strong>Giá</strong></div>
+                    </div>
+                    <div class="order-products">
+                        @foreach (var item in Model)
+                        {
+                            <div class="order-col">
+                                <div>@item.SoLuong x @item.TenSP</div>
+                                <div>@string.Format("{0:0,0 VNĐ}", item.DonGia)</div>
+                            </div>
+                        }
+                    </div>
+                    <div class="order-col">
+                        <div>Vận chuyển</div>
+                        <div><strong>Miễn Phí</strong></div>
+                    </div>
+                    <div class="order-col">
+                        <div><strong>Tổng tiền</strong></div>
+                        <div><strong class="order-total">@string.Format("{0:0,0 VNĐ}", ViewBag.TongTien) </strong></div>
+                    </div>
+                </div>
+                <div class="payment-method">
+                    <a href="@Url.Action("ThanhToan","GioHang")" class="primary-btn order-submit">Thanh Toán Sau Khi Nhận Hàng</a>
+                </div>
+                <p style="text-align:center">Hoặc Thanh Toán Với</p>
+                @*<div  id="paypal-button-container"></div>
+        <script src="https://www.paypal.com/sdk/js?client-id=AdSLRsSBmRTP5-VukeXGIVBL3YGpbESTZKpnn1DHtxesXbk2qAq4SwF8SBh3eJIFYgUJdMemVcomxcA3"></script>
+        <script>
+            paypal.Buttons().render('#paypal-button-container');
+        </script>*@
+                <div class="payment-method">
+                    <a href=" @Url.Action("PaymentWithPaypal", "GioHang")"class="primary-btn order-submit"> Thanh Toán Với Paypal
+                       
+                    </a>
+                </div>
+                
+                
+            </div>
+
+            <!-- /Order Details -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+
+
+
+
+

@@ -1,0 +1,60 @@
+﻿@*<div id="divGioHang" class="cart">
+        <div class="">
+            <p style="font-weight:bold">
+                Giỏ Hàng
+                <a href="@Url.Action("XemGioHang","GioHang")">
+
+                    <div id="dd" class="" style="display:inline-block; padding:0px,5px ; margin-left:10px">
+                        @ViewBag.TongTien VND (<span>@ViewBag.TongSoLuong sp</span>)
+                    </div>
+
+                </a>
+
+            </p>
+        </div>
+
+    </div>*@
+@using Do_An_Web.Models;
+@model IEnumerable<ItemGioHang>
+
+<div class="dropdown">
+    <a  class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+        <i class="fa fa-shopping-cart"></i>
+        <span>Giỏ hàng của bạn</span>
+        <div class="qty">@ViewBag.TongSoLuong</div>
+    </a>
+    <div class="cart-dropdown">
+
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <div class="cart-list">
+                    <div class="product-widget">
+                        <div class="product-img">
+                            <img src="~/Content/Layout/img/@item.HinhAnh" alt="">
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-name"><a href="#">@item.TenSP</a></h3>
+                            <h4 class="product-price"><span class="qty">@item.SoLuong x</span>@string.Format("{0:0,0 VNĐ}", item.DonGia)</h4>
+                        </div>
+                        <button class="delete"><i class="fa fa-close"></i></button>
+                    </div>
+
+                </div>
+            }
+        }
+
+
+
+        <div class="cart-summary">
+            <small>Số lượng @ViewBag.TongSoLuong</small>
+            <h5>Tổng tiền: @ViewBag.TongTien VND</h5>
+        </div>
+        <div class="cart-btns">
+            <a href="@Url.Action("XemGioHang","GioHang")">Xem Giỏ Hàng</a>
+            <a href="@Url.Action("DatHang","GioHang")">Thanh Toán  <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+
+    </div>
+</div>

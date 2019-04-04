@@ -1,0 +1,120 @@
+﻿@using Do_An_Web.Models
+
+
+<header>
+    <!--TOP HEADER -->
+    <div id="top-header">
+        <div class="container">
+            <ul class="header-links pull-left">
+                <li><a href="#"><i class="fa fa-phone"></i> +077 565 4423</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> phamquochuy24082013@gmail.com</a></li>
+                <li><a href="#"><i class="fa fa-map-marker"></i> 664/49 Nguyễn Đình Chiểu P3 Q3 TP HCM</a></li>
+            </ul>
+            <ul class="header-links pull-right">
+                @{
+                    if (Session["Taikhoan"] != null && Session["TaiKhoan"] != "")
+                    {
+                        KhachHang kh = (KhachHang)Session["TaiKhoan"];
+                        <li style="color:white">@kh.HoTen</li>
+                        <li>@Html.ActionLink("Đăng Xuất", "DangXuat", "Home")</li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="@Url.Action("DangKy","Home")">Đăng Ký</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("DangNhap","Home")">Đăng Nhập</a>
+                        </li>
+                    }
+                }
+
+            </ul>
+        </div>
+    </div>
+    <!-- /TOP HEADER -->
+    <!-- MAIN HEADER -->
+    <div id="header">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- LOGO -->
+                <div class="col-md-3">
+                    <div class="header-logo">
+                        <a href="#" class="logo">
+                            <img src="./img/logo.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <!-- /LOGO -->
+                <!-- SEARCH BAR -->
+                <div class="col-md-6">
+                    <div class="header-search">
+                        @using (Html.BeginForm("KetQuaTimKiem", "TimKiem",FormMethod.Get))
+                        {
+                            <input name="tukhoa" style = "border-top-left-radius:10px ;border-bottom-left-radius:10px" class="input" placeholder="Tìm kiếm theo mã tên mức giá">
+                            <button  type="submit" class="search-btn">Tìm Kiếm</button>
+                        }
+
+                    </div>
+                </div>
+                <!-- /SEARCH BAR -->
+                <!-- ACCOUNT -->
+                <div  class="col-md-3 clearfix">
+                    <div id="divGioHang" class="header-ctn">
+                        <!-- Wishlist -->
+                        @*<div >
+                                <a href="#">
+                                    <i class="fa fa-heart-o"></i>
+                                    <span>Sản phẩm yêu thích</span>
+                                    <div class="qty">2</div>
+                                </a>
+                            </div>*@
+                        <!-- /Wishlist -->
+                        <!-- Cart -->
+                        <
+                        @Html.Action("GioHangPartial", "GioHang")
+
+
+
+                        <!-- /Cart -->
+                        <!-- Menu Toogle -->
+                        <div class="menu-toggle">
+                            <a href="#">
+                                <i class="fa fa-bars"></i>
+                                <span>Menu</span>
+                            </a>
+                        </div>
+                        <!-- /Menu Toogle -->
+                    </div>
+                </div>
+                <!-- /ACCOUNT -->
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- /MAIN HEADER -->
+    </header>
+    <nav id="navigation">
+        <!-- container -->
+        <div class="container">
+            <!-- responsive-nav -->
+            <div id="responsive-nav">
+                <!-- NAV -->
+                <ul class="main-nav nav navbar-nav">
+                    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                    <li><a href="@Url.Action("HienThiSanPham","DanhMucSanpham",new { @loai = 1 })">Điện Thoại</a></li>
+                    <li><a href="@Url.Action("HienThiSanPham","DanhMucSanpham",new { @loai = 3 })">Máy Tính Bảng</a></li>
+                    <li><a href="@Url.Action("HienThiSanPham","DanhMucSanpham",new { @loai = 2 })">Laptops</a></li>
+                </ul>
+                <!-- /NAV -->
+            </div>
+            <!-- /responsive-nav -->
+        </div>
+        <!-- /container -->
+    </nav>
+
+
+

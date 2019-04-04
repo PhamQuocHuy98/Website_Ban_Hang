@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="~/Scripts/Chart.js/dist/Chart.min.css">
+<script src="~/Scripts/Chart.js/dist/Chart.js"></script>
+
+<style>
+    .list_of_members {
+        display: none;
+    }
+
+    .element-wrapper {
+        padding-bottom: 1rem;
+    }
+
+    .container {
+        padding-top: 1rem;
+    }
+
+    .element-wrapper .element-header {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding-bottom: 1rem;
+        margin-bottom: 0rem;
+        position: relative;
+        z-index: 1;
+    }
+</style>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="element-wrapper">
+            <h6 class="element-header">
+                THỐNG KÊ NGƯỜI DÙNG
+            </h6>
+            <div class="element-box-tp">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="element-wrapper" style="align-items:center">
+    <div class="element-actions">
+        <form class="form-inline justify-content-sm-end"></form>
+    </div>
+    <div class="element-content">
+        <div class="row">
+            <div class="col-sm-4 col-xxxl-3">
+                <a class="element-box el-tablo" href="#">
+                    <div class="label">
+                        SỐ NGƯỜI DÙNG
+                    </div>
+                    <div class="value">
+                        @ViewBag.TongNguoiDung
+                    </div>
+                    <div class="trending trending-down">
+                        <span>Người</span><i class="os-icon os-icon-arrow-up2"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 col-xxxl-3">
+                <a class="element-box el-tablo" href="#">
+                    <div class="label">
+                        SỐ NGƯỜI TRUY CẬP
+                    </div>
+                    <div class="value">
+                        @ViewBag.SoNguoiTruyCap
+                    </div>
+                    <div class="trending trending-up">
+                        <span>Người</span><i class="os-icon os-icon-arrow-up2"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 col-xxxl-3">
+                <a class="element-box el-tablo" href="#">
+                    <div class="label">
+                        SỐ NGƯỜI ĐANG TRỰC TUYẾN
+                    </div>
+                    <div class="value">
+                        @ViewBag.SoNguoiDangTrucTuyen
+                    </div>
+                    <div class="trending trending-down">
+                        <span>Người</span><i class="os-icon os-icon-arrow-up2"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="element-wrapper">
+            <h6 class="element-header">
+                BIỂU ĐỒ DOANH THU
+            </h6>
+            <div class="element-box-tp">
+            </div>
+        </div>
+    </div>
+</div>
+
+<canvas id="myChart" style="width:700px ; height: 50vh"></canvas>
+<script>
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+            datasets: [{
+                label: 'DOANH THU HẰNG THÁNG (triệu VNĐ)',
+                data: [@ViewBag.T1, @ViewBag.T2, @ViewBag.T3, @ViewBag.T4, @ViewBag.T5, @ViewBag.T6, @ViewBag.T7, @ViewBag.T8, @ViewBag.T9, @ViewBag.T10, @ViewBag.T11, @ViewBag.T12],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>

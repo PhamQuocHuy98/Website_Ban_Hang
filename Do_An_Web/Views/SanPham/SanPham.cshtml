@@ -1,0 +1,72 @@
+﻿@using Do_An_Web.Models;
+@{
+    ViewBag.Title = "SanPham";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+@{ IEnumerable<SanPham> lstSPM = (IEnumerable<SanPham>)ViewBag.LstSPMoi;}
+@{ List<SanPham> lstLoaiSP = (List<SanPham>)ViewBag.LstLSP; }
+
+<div class="container">
+    <!-- row -->
+    <div class="row">
+        <!-- shop -->
+        @foreach (var item in lstLoaiSP.GroupBy(n => n.LoaiSanPham))
+        {
+            int i = 1;
+
+            <div class="col-md-4 col-xs-6">
+                <div class="shop">
+
+                    <div class="shop-body">
+                        <h3>@item.Key.TenLoai<br></h3>
+                        <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                    @{string image = "";
+                        if (item.Key.MaLoaiSanPham == 1) // điện thoại
+                        {
+                            image = "headshop2.png";
+                        }
+                        else if (item.Key.MaLoaiSanPham == 2) // laptap
+                        {
+                            image = "headshop1.png";
+                        }
+                        else if (item.Key.MaLoaiSanPham == 3) // Máy tính bảng
+                        {
+                            image = "headshop3.png";
+                        }
+                    }
+                    <div class="shop-img">
+                        <img src="~/Content/Layout/img/@image" width="50" height="300" alt="">
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    <!-- /row -->
+</div>
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">Sản Phẩm Mới</h3>
+                </div>
+            </div>
+            <!-- /section title -->
+            <!-- Products tab & slick -->
+            @Html.Partial("HienThiSanPham", lstSPM)
+            <!-- Products tab & slick -->
+        </div>
+
+        <!-- /row -->
+    </div>
+
+    <!-- /container -->
+</div>
+
+<!-- /SECTION -->

@@ -1,0 +1,80 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <div class="element-wrapper">
+            <h6 class="element-header">
+                THỐNG KÊ CƠ BẢN
+            </h6>
+            <div class="element-box-tp">
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .element-wrapper {
+        padding-bottom: 1rem;
+    }
+
+    .container {
+        padding-top: 1rem;
+    }
+
+    .element-wrapper .element-header {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding-bottom: 1rem;
+        margin-bottom: 0rem;
+        position: relative;
+        z-index: 1;
+    }
+</style>
+
+<div class="element-wrapper">
+    <div class="element-actions">
+        <form class="form-inline justify-content-sm-end"></form>
+    </div>
+    <div class="element-content">
+        <div class="row">
+            <div class="col-sm-4 col-xxxl-3">
+                <a class="element-box el-tablo" href="#">
+                    <div class="label">
+                        TỔNG SẢN PHẨM
+                    </div>
+                    <div class="value">
+                        @ViewBag.TongSanPham
+                    </div>
+                    <div class="trending trending-up-basic">
+                        <span>Sản phẩm</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 col-xxxl-3">
+                <a class="element-box el-tablo" href="#">
+                    <div class="label">
+                        TỔNG ĐƠN ĐẶT HÀNG
+                    </div>
+                    <div class="value">
+                        @ViewBag.ThongKeDonDatHang
+                    </div>
+                    <div class="trending trending-down">
+                        <span>Đơn</span><i class="os-icon os-icon-arrow-up2"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 col-xxxl-3">
+                <a class="element-box el-tablo" href="#">
+                    <div class="label">
+                        Tổng Doanh Thu
+                    </div>
+                    <div class="value">
+                        @ViewBag.TongDoanhThu
+                    </div>
+                    <div class="trending trending-up">
+                        <span>triệu VNĐ</span><i class="os-icon os-icon-arrow-up2"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

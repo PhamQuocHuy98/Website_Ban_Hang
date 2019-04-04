@@ -1,0 +1,78 @@
+﻿@using Do_An_Web.Models
+@model  IEnumerable<SanPham>
+@*<div class="section group">
+    @foreach (var item in Model)
+    {
+        <div class="grid_1_of_4 images_1_of_4">
+            <a href="#"><img src="~/Content/Layout/images/@item.HinhAnh" alt=""></a>
+            <div class="price" style="border:none">
+                <div class="add-cart" style="float:none">
+                    <h4>
+                        @*<a href="@Url.Action("ThemGioHang","GioHang",new { @MaSp = item.MaSP, @strURL = Request.Url.ToString() })">Thêm Vào Giỏ Hàng</a>
+                        @Ajax.ActionLink("Thêm Vào Giỏ Hàng", "ThemGioHang", "GioHang", new { @MaSp = item.MaSP }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "divGioHang", InsertionMode = InsertionMode.Replace }, null)
+                    </h4>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    }
+
+
+</div>*@
+
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <h3 class="title">SẢN PHẨM CÙNG LOẠI</h3>
+                </div>
+            </div>
+
+            @*<div class="clearfix visible-sm visible-xs"></div>*@
+
+            <!-- product -->
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 col-xs-6">
+                    <div class="product">
+                        <div class="product-img">
+                            <img src="~/Content/Layout/img/@item.HinhAnh" alt="">
+                        </div>
+                        <div class="product-body">
+                            
+                            <h3 class="product-name"><a href="#">@item.TenSP</a></h3>
+                            <h4 class="product-price">@string.Format("{0:0,0 VNĐ}",item.GiaBan) <del class="product-old-price">@string.Format("{0:0,0 VNĐ}", (item.GiaBan*3)/2)</del></h4>
+                            <div class="product-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <div class="product-btns">
+                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
+                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
+                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem chi tiết </span></button>
+                            </div>
+                        </div>
+                        <div class="add-to-cart">
+                            <button class="add-to-cart-btn">
+                                <i class="fa fa-shopping-cart"></i>
+                                @Ajax.ActionLink("Thêm Vào Giỏ Hàng", "ThemGioHang", "GioHang", new { @MaSp = item.MaSP }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "divGioHang", InsertionMode = InsertionMode.Replace }, null)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- /product -->
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>

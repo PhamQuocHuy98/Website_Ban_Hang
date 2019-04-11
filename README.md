@@ -34,7 +34,19 @@
 <br/><br/>
 **Thanh Toán**
 <a href="https://imgur.com/Wz733C3"><img src="https://i.imgur.com/Wz733C3.png" title="source: imgur.com" /></a>
-
-# 2.Phân Admin.
-**. Quản lí sản phẩm
+<br/><br/>
+# 2.Phân Admin .
+**Quản lí sản phẩm**
 <img src="https://i.imgur.com/pq5jIX6.png" title="source: imgur.com" />
+<br/><br/>
+**Thêm Sản Phẩm Mới**
+<img src="https://i.imgur.com/LFxsDPR.png" title="source: imgur.com" />
+<br/><br/>
+**Sửa Sản Phẩm Mới**
+<img src="https://i.imgur.com/BjchxaO.png" title="source: imgur.com" />
+<br/><br/>
+**Xóa Sản Phẩm **
+<img src="https://i.imgur.com/BBPJbdm.png" title="source: imgur.com" />
+
+**Quản lí khách hàng **
+<img src="https://i.imgur.com/dSOXpKw.png" title="source: imgur.com" />

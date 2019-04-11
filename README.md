@@ -1,3 +1,5 @@
+
+#1.Giao Diện Khách Hàng
 **Giao Diện Chính**
 <img src="https://i.imgur.com/9NRLRBC.png" title="source: imgur.com"/>
 
@@ -9,10 +11,6 @@
 <br/><br/>
 **Danh Mục Máy Tính Bảng**
 <img src="https://i.imgur.com/kgNTJUD.png" title="source: imgur.com" />
-
-<br/><br/>
-**Danh Mục Laptop**
-<img src="https://i.imgur.com/oMPfHYo.png" title="source: imgur.com" />
 
 <br/><br/>
 **Danh Mục Laptop**

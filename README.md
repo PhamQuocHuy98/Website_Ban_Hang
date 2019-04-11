@@ -1,6 +1,6 @@
 
 # 1.Giao Diện Khách Hàng
-<br>
+<br/>
 **Giao Diện Chính**
 <img src="https://i.imgur.com/9NRLRBC.png" title="source: imgur.com"/>
 
@@ -34,3 +34,7 @@
 <br/><br/>
 **Thanh Toán**
 <a href="https://imgur.com/Wz733C3"><img src="https://i.imgur.com/Wz733C3.png" title="source: imgur.com" /></a>
+
+# 2.Phân Admin.
+**. Quản lí sản phẩm
+<img src="https://i.imgur.com/pq5jIX6.png" title="source: imgur.com" />

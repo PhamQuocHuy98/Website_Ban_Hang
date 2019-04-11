@@ -1,5 +1,6 @@
 
-#1.Giao Diện Khách Hàng
+# 1.Giao Diện Khách Hàng
+<br>
 **Giao Diện Chính**
 <img src="https://i.imgur.com/9NRLRBC.png" title="source: imgur.com"/>
 
